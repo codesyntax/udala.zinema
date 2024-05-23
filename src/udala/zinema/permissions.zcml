@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="udala.zinema.AddPelikulaContainer"
+        title="udala.zinema: Add PelikulaContainer"
+    />
+
+
 
   </configure>
 
