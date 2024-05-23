@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from plone.app.textfield import RichText
+from plone.app.textfield import RichText
 # from plone.autoform import directives
 from plone.dexterity.content import Container
 
@@ -8,55 +8,41 @@ from plone.supermodel import model
 
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
-# from zope import schema
+from zope import schema
 from zope.interface import implementer
 
 
-# from udala.zinema import _
+from udala.zinema import _
 
 
 class IPelikulaContainer(model.Schema):
     """ Marker interface and Dexterity Python Schema for PelikulaContainer
     """
-    # If you want, you can load a xml model created TTW here
-    # and customize it in Python:
 
-    # model.load('pelikula_container.xml')
 
-    # directives.widget(level=RadioFieldWidget)
-    # level = schema.Choice(
-    #     title=_(u'Sponsoring Level'),
-    #     vocabulary=LevelVocabulary,
-    #     required=True
-    # )
+    initial_stuff = RichText(
+        title=_(u'Hitzorduaren hasierako testua'),
+        description=_('Testu orokor hau ebentuaren aurretik agertuko da eta bere helburua webgunearen maketazio txukun bat edukitzea da. Informazio orokorra dago bertan, hala nola, txartel salmentaren ordutegia eta informazio gehiago lortzeko telefonoa.'),
+        required=False
+    )
 
-    # text = RichText(
-    #     title=_(u'Text'),
-    #     required=False
-    # )
+    text = RichText(
+        title=_(u'Programazioaren informazioa'),
+        required=False
+    )
 
-    # url = schema.URI(
-    #     title=_(u'Link'),
-    #     required=False
-    # )
+    title_eu = schema.TextLine(title=_(u"Sortuko duen hitzorduaren titulua euskaraz"))
 
-    # fieldset('Images', fields=['logo', 'advertisement'])
-    # logo = namedfile.NamedBlobImage(
-    #     title=_(u'Logo'),
-    #     required=False,
-    # )
+    title_es = schema.TextLine(title=_(u"Sortuko duen hitzorduaren titulua gazteleraz"))
 
-    # advertisement = namedfile.NamedBlobImage(
-    #     title=_(u'Advertisement (Gold-sponsors and above)'),
-    #     required=False,
-    # )
+    subject_eu = schema.List(title=_(u"Sortuko duen hitzorduaren titulua euskaraz"))
 
-    # directives.read_permission(notes='cmf.ManagePortal')
-    # directives.write_permission(notes='cmf.ManagePortal')
-    # notes = RichText(
-    #     title=_(u'Secret Notes (only for site-admins)'),
-    #     required=False
-    # )
+    subject_es = schema.List(title=_(u"Sortuko duen hitzorduaren titulua gazteleraz"))
+
+    location_eu = schema.TextLine(title=_(u"Lekua euskaraz"))
+
+    location_es = schema.TextLine(title=_(u"Lekua gazteleraz"))
+
 
 
 @implementer(IPelikulaContainer)
