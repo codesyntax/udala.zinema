@@ -3,6 +3,14 @@
   <permissions>
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission name="udala.zinema: Add Pelikula" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+
+
     <permission name="udala.zinema: Add PelikulaContainer" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>

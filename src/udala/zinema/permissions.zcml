@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="udala.zinema.AddPelikula"
+        title="udala.zinema: Add Pelikula"
+    />
+
+
+    <permission
         id="udala.zinema.AddPelikulaContainer"
         title="udala.zinema: Add PelikulaContainer"
     />
