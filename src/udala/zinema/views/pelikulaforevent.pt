@@ -1,0 +1,66 @@
+<metal:main define-macro="main">
+  <h2 tal:content="context/Title"
+      tal:attributes="id string:film-no-${request/num|nothing}">
+    Izenburua
+  </h2>
+  <span tal:condition="context/image|nothing"
+        tal:define="images context/@@images"
+        tal:replace="structure python:images.tag(scale='mini',
+                                                  css_class='image-right')" />
+
+  <div id="saioak">
+
+    <table class="datagridwidget-table-view listing"
+           i18n:domain="eibarkoudala.coliseo">
+      <thead>
+        <tr>
+          <th i18n:translate="" i18n:target="context/Language">
+            Eguna
+          </th>
+          <th i18n:translate="" i18n:target="context/Language">
+            Ordua
+          </th>
+          <th i18n:translate="" i18n:target="context/Language">
+            Aretoa
+          </th>
+        </tr>
+      </thead>
+      <tbody i18n:target="context/Language">
+        <tr tal:repeat="saioa view/saioak">
+          <td>
+            <span
+                i18n:translate="" i18n:domain="plonelocales"
+                tal:content="python:view.localized_dow(saioa['eguna'])"
+                tal:omit-tag="">
+              2012/12/01
+            </span>
+            <span tal:replace="python:view.daynum(saioa['eguna'])" />
+          </td>
+          <td tal:content="saioa/ordua">
+            12:00
+          </td>
+          <td tal:content="saioa/aretoa">
+            1. aretoa
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <tal:ficha condition="python:context.Language() == 'es'">
+    <h3>Ficha t&eacute;cnica</h3>
+    <span tal:replace="structure context/ficha_tecnica/output" />
+  </tal:ficha>
+
+  <tal:fitxa condition="python:context.Language() == 'eu'">
+    <h3>Fitxa teknikoa</h3>
+    <span tal:replace="structure context/fitxa_teknikoa/output" />
+  </tal:fitxa>
+
+  <div id="trailer" tal:condition="context/trailer"
+       tal:content="structure context/trailer">
+    Embed
+  </div>
+  <br />  <br />  <br />  <br />
+</metal:main>

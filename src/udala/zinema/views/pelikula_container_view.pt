@@ -1,35 +1,77 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="udala.zinema"
-      metal:use-macro="context/main_template/macros/master">
-<body>
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="udala.zinema">
+  <head></head>
+  <body>
 
-  <metal:custom_title fill-slot="content-title">
-    <h1 tal:replace="structure context/@@title" />
+    <metal:desc fill-slot="content-description" tal:condition="view/editing_permission">
+      <p class="documentDescription" i18n:translate="">
+        Erabili elementu hau pelikulekin hitzordu bat sortzeko. Aukeratu nahi dituzun pelikulak
+        eta sistemak automatikoki pelikula guzti horien informazioa biltzen duen hitzordu bat
+        sortuko du. Hitzorduaren hasiera aukeratutako pelikuletako lehen saioaren eguna izango da
+        eta bukaera azken saioaren eguna.
+        Hitzordua euskaraz eta gaztelaniaz sortuko da baina pribatuan, zuk gainbegiratu, nahi duzuna
+        aldatu eta ondoren argitaratzeko.
+      </p>
+    </metal:desc>
 
-    <!-- @@title view template: -->
-    <!--
-    <h1 tal:define="title context/Title" tal:condition="title" tal:content="title">
-      Title or id
-    </h1>
-    -->
+    <metal:content-core fill-slot="content-core">
 
-  </metal:custom_title>
+      <tal:content condition="not:view/editing_permission">
+        <div tal:replace="structure context/text/output" />
+      </tal:content>
 
-  <metal:custom_description fill-slot="content-description">
-    <p tal:replace="structure context/@@description" />
-  </metal:custom_description>
 
-  <metal:content-core fill-slot="content-core">
-  <metal:block define-macro="content-core">
-
-    <h2>Main content</h2>
-    <!--<div tal:replace="view/my_custom_view_method" />-->
-    <!--<div tal:replace="context/my_custom_field" />-->
-
-  </metal:block>
-  </metal:content-core>
-</body>
+      <tal:form condition="view/editing_permission">
+        <form
+            action="" method="post"
+            tal:attributes="action string:${context/absolute_url}/create_pelikula_events">
+          <span tal:replace="structure context/@@authenticator/authenticator" />
+          <table class="listing">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th i18n:translate="">Izenburua</th>
+                <th i18n:translate="">Emankizun egunak</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr tal:repeat="pelikula view/get_latest_films">
+                <td>
+                  <input type="checkbox" name="ids:list" tal:attributes="value pelikula/id" />
+                </td>
+                <td>
+                  <a href=""
+                     tal:attributes="href pelikula/absolute_url;
+                                     id string:pelikula-link-${repeat/pelikula/index}"
+                     tal:content="pelikula/Title">
+                    Izena
+                  </a>
+                  <script type="text/javascript"
+                          tal:content="string:
+                                      jq(document).ready(function(){
+                                         jq('#pelikula-link-${repeat/pelikula/index}').prepOverlay({
+                                                  subtype: 'ajax',
+                                                  filter: '#content-core',
+                                                  })
+                                                                       });">
+                    Script
+                  </script>
+                </td>
+                <td tal:define="egunak pelikula/saioak">
+                  <tal:saio repeat="saioa egunak">
+                    <span tal:replace="saioa/eguna" />
+                  </tal:saio>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-primary" i18n:translate="">Sortu agendako hitzorduak</button>
+        </form>
+      </tal:form>
+    </metal:content-core>
+  </body>
 </html>

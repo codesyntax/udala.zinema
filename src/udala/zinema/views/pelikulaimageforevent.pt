@@ -1,0 +1,7 @@
+<a href=""
+   tal:condition="context/image|nothing"
+   tal:attributes="href string:#film-no-${request/num|nothing}">
+  <span
+    tal:define="images context/@@images"
+    tal:replace="structure python:images.tag(scale='mini')" />
+</a>

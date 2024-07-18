@@ -8,11 +8,43 @@
 
   <browser:page
     name="view"
-    for="IPelikulaContainer"
+    for="..content.pelikula_container.IPelikulaContainer"
     class=".pelikula_container_view.PelikulaContainerView"
     template="pelikula_container_view.pt"
     permission="zope2.View"
     layer="udala.zinema.interfaces.IUdalaZinemaLayer"
     />
+
+  <browser:page
+    for="..content.pelikula_container.IPelikulaContainer"
+    name="create_pelikula_events"
+    class=".pelikula_container_view.CreatePelikulaEvents"
+    permission="cmf.ModifyPortalContent"
+    layer="udala.zinema.interfaces.IUdalaZinemaLayer"
+  />
+
+<browser:page
+    for="..content.pelikula.IPelikula"
+    name="view"
+    class=".pelikula.PelikulaView"
+    template="pelikulaview.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="..content.pelikula.IPelikula"
+    name="pelikula-image-for-event"
+    class=".pelikula.PelikulaImageForEvent"
+    template="pelikulaimageforevent.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="..content.pelikula.IPelikula"
+    name="pelikula-for-event"
+    class=".pelikula.PelikulaForEvent"
+    template="pelikulaforevent.pt"
+    permission="zope2.View"
+  />
 
 </configure>

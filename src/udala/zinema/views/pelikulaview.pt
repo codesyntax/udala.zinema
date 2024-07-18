@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="udala.zinema">
+  <head></head>
+  <body>
+    <metal:content fill-slot="content-core">
+      <p>
+        <a href="" id="edit-pelikula"
+           tal:attributes="href string:${context/absolute_url}/edit"
+           i18n:translate="">
+          Edit
+        </a>
+
+      </p>
+      <metal:c use-macro="here/@@pelikula-for-event/macros/main" />
+    </metal:content>
+  </body>
+</html>
