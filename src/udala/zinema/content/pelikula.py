@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
-from plone.app.textfield import RichText
-# from plone.autoform import directives
-from plone.dexterity.content import Container
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.registry import DictRow
+from plone.app.textfield import RichText
 from plone.autoform.directives import widget
+
+# from plone.autoform import directives
+from plone.dexterity.content import Container
+
 # from plone.namedfile import field as namedfile
 from plone.supermodel import model
-from zope.interface import Interface
+from udala.zinema import _
 
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.interface import implementer
+from zope.interface import Interface
 
-
-from udala.zinema import _
 
 class ISaioaRowSchema(Interface):
     eguna = schema.TextLine(title=_(u"Eguna"), default="AAAA/MM/DD")

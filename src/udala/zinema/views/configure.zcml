@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="udala.zinema">
+
+ <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+    name="view"
+    for="IPelikulaContainer"
+    class=".pelikula_container_view.PelikulaContainerView"
+    template="pelikula_container_view.pt"
+    permission="zope2.View"
+    layer="udala.zinema.interfaces.IUdalaZinemaLayer"
+    />
+
+</configure>
