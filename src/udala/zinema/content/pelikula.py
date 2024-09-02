@@ -16,7 +16,9 @@ from udala.zinema import _
 from zope import schema
 from zope.interface import implementer
 from zope.interface import Interface
-
+from DateTime import DateTime
+from plone.base.i18nl10n import weekdayname_msgid
+from zope.i18n import translate
 
 class ISaioaRowSchema(Interface):
     eguna = schema.TextLine(title=_(u"Eguna"), default="AAAA/MM/DD")
@@ -62,3 +64,23 @@ class IPelikula(model.Schema):
 class Pelikula(Container):
     """ Content-type class for IPelikula
     """
+    def get_sorted_data(self):
+        ret = {}
+        for saioa in self.saioak:
+            item = ret.get(saioa.get("eguna", ""), [])
+            item.append(saioa.get("ordua", ""))
+            ret[saioa.get("eguna", "")] = item
+        return sorted(ret.items())
+
+    def localized_dow(self, date):
+        dt = DateTime(date, datefmt="international")
+        dow = dt.dow()
+        return translate(
+            weekdayname_msgid(dow),
+            target_language=self.Language(),
+            domain="plonelocales",
+        )
+
+    def daynum(self, date):
+        dt = DateTime(date, datefmt="international")
+        return dt.day()
