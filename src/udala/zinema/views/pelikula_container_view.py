@@ -18,6 +18,7 @@ from zExceptions import Forbidden
 from zope.component import getMultiAdapter
 from zope.interface import Interface, alsoProvides, implementer
 from plone.event.interfaces import IEventAccessor
+from plone.namedfile.file import NamedBlobImage
 
 
 class IPelikulaContainerView(Interface):
@@ -147,6 +148,12 @@ class CreatePelikulaEvents(BrowserView):
         # to the films
         context.text = event.text
 
+        film_images = [item.image for item in items if item.image is not None]
+        if film_images:
+            event.image = NamedBlobImage(
+                film_images[0].data, filename=film_images[0].filename
+            )
+
         api.relation.delete(source=context, relationship=REFERENCED_FILM)
         # context.deleteReferences(REFERENCED_FILM)
         for item in items:
@@ -186,7 +193,9 @@ class CreatePelikulaEvents(BrowserView):
                 manager.add_translation(target_language)
                 translation = manager.get_translation(target_language)
                 translation.title = item.title
-                translation.image = item.image
+
+                translation.image = NamedBlobImage(item.image.data, item.image.filename)
+
                 trans_items.append(translation)
             except Exception as e:
                 from logging import getLogger
@@ -225,6 +234,13 @@ class CreatePelikulaEvents(BrowserView):
             )
             trans_event.location = MEZUAK["location"][target_language]
             trans_event.subjects = MEZUAK["subject"][target_language]
+
+            film_images = [item.image for item in trans_items if item.image is not None]
+            if film_images:
+                trans_event.image = NamedBlobImage(
+                    film_images[0].data, film_images[0].filename
+                )
+
             trans_event.reindexObject()
 
             context_manager = pamapi.get_translation_manager(self.context)
