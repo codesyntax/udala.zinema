@@ -185,6 +185,8 @@ class CreatePelikulaEvents(BrowserView):
                 # trans_items.append(item.addTranslation(target_language))
                 manager.add_translation(target_language)
                 translation = manager.get_translation(target_language)
+                translation.title = item.title
+                translation.image = item.image
                 trans_items.append(translation)
             except Exception as e:
                 from logging import getLogger
