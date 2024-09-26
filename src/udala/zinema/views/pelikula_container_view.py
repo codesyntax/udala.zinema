@@ -136,7 +136,7 @@ class CreatePelikulaEvents(BrowserView):
             # start=start_date,
             # end=end_date,
             location=MEZUAK["location"][language],
-            subject=MEZUAK["subject"][language],
+            subjects=MEZUAK["subject"][language],
             eventUrl=context.absolute_url(),
         )
         IEventAccessor(event).start = start_date
@@ -222,7 +222,7 @@ class CreatePelikulaEvents(BrowserView):
                 self.get_initial_stuff(target_language).output + html_content
             )
             trans_event.location = MEZUAK["location"][target_language]
-            trans_event.subject = MEZUAK["subject"][target_language]
+            trans_event.subjects = MEZUAK["subject"][target_language]
             trans_event.reindexObject()
 
             context_manager = pamapi.get_translation_manager(self.context)
