@@ -19,6 +19,8 @@ from zope.interface import Interface
 from DateTime import DateTime
 from plone.base.i18nl10n import weekdayname_msgid
 from zope.i18n import translate
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from zope.interface import alsoProvides
 
 
 class ISaioaRowSchema(Interface):
