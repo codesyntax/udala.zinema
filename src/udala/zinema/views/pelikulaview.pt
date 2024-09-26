@@ -7,14 +7,6 @@
   <head></head>
   <body>
     <metal:content fill-slot="content-core">
-      <p>
-        <a href="" id="edit-pelikula"
-           tal:attributes="href string:${context/absolute_url}/edit"
-           i18n:translate="">
-          Edit
-        </a>
-
-      </p>
       <metal:c use-macro="here/@@pelikula-for-event/macros/main" />
     </metal:content>
   </body>
