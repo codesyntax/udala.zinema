@@ -45,6 +45,31 @@ class PelikulaContainerView(BrowserView):
             full_objects=True,
         )[:num]
 
+    def _films_in_current_week(self, items):
+        sorted_data = []
+        for item in items:
+            item_dates = [item_data[0] for item_data in item.get_sorted_data()]
+            sorted_data.extend(item_dates)
+
+        min_date = min(sorted_data)
+        max_date = max(sorted_data)
+        min_date_dt = DateTime(min_date, fmt="international")
+        max_date_dt = DateTime(max_date, fmt="international")
+
+        today = DateTime()
+
+        if max_date_dt < today:
+            # Erakusten den azken pelikula iraganekoa da
+            return False
+
+        # Beste kasu guztietan pelikulak erakutsi.
+        return True
+
+    def films_are_from_current_week(self):
+        pelikula_relations = api.relation.get(source=self.context, relationship=REFERENCED_FILM)
+        pelikulak = [pelikula.to_object for pelikula in pelikula_relations]
+        return self._films_in_current_week(pelikulak)
+
 
 class CreatePelikulaEvents(BrowserView):
 

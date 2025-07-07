@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-
-# from plone.autoform import directives
 from plone.dexterity.content import Container
-
-# from plone.namedfile import field as namedfile
 from plone.supermodel import model
-from udala.zinema import _
-
-# from plone.supermodel.directives import fieldset
-# from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
-from zope.interface import implementer
+from zope.interface import alsoProvides, implementer
+
+from udala.zinema import _
 
 
 class IPelikulaContainer(model.Schema):
@@ -68,6 +63,31 @@ class IPelikulaContainer(model.Schema):
     location_eu = schema.TextLine(title=_("Lekua euskaraz"))
 
     location_es = schema.TextLine(title=_("Lekua gazteleraz"))
+
+    show_warning = schema.Bool(
+        title=_(
+            'Oharra erakutsi?',
+        ),
+        description=_(
+            'Aktibatuta badago, beheko oharra erakutsiko da zinema karteldegiaren atalean.'
+        ),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    warning = RichText(
+        title=_(
+            'Oharra',
+        ),
+        description="",
+        default='',
+        required=False,
+        readonly=False,
+    )
+
+alsoProvides(IPelikulaContainer["show_warning"], ILanguageIndependentField)
 
 
 @implementer(IPelikulaContainer)

@@ -21,7 +21,22 @@
     <metal:content-core fill-slot="content-core">
 
       <tal:content condition="not:view/editing_permission">
-        <div tal:replace="structure context/text/output" />
+
+        <tal:warning condition="context/show_warning|nothing">
+          <p tal:content="structure context/warning/output" />
+        </tal:warning>
+        <tal:notwarning condition="not:context/show_warning|nothing">
+          <tal:current condition="view/films_are_from_current_week">
+            <div tal:replace="structure context/text/output" />
+          </tal:current>
+          <tal:not-current condition="not: view/films_are_from_current_week">
+            <p i18n:translate="">Datorren asteburuko pelikulak ez daude oraindik eskuragarri</p>
+          </tal:not-current>
+        </tal:notwarning>
+
+
+
+
       </tal:content>
 
 

@@ -49,12 +49,12 @@
         </div>
         <tal:ficha condition="python:context.Language() == 'es'">
           <h3>Ficha t&eacute;cnica</h3>
-          <span tal:replace="structure context/ficha_tecnica/output" />
+          <span tal:replace="structure context/ficha_tecnica/output" tal:on-error="string:"/>
         </tal:ficha>
 
         <tal:fitxa condition="python:context.Language() == 'eu'">
           <h3>Fitxa teknikoa</h3>
-          <span tal:replace="structure context/fitxa_teknikoa/output" />
+          <span tal:replace="structure context/fitxa_teknikoa/output" tal:on-error="string:" />
         </tal:fitxa>
 
         <div id="trailer" tal:condition="context/trailer" tal:content="structure context/trailer">
