@@ -1,0 +1,155 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-07-07 13:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ../content/pelikula_container.py:71
+msgid "Aktibatuta badago, beheko oharra erakutsiko da zinema karteldegiaren atalean."
+msgstr ""
+
+#: ../content/pelikula.py:29
+msgid "Aretoa"
+msgstr ""
+
+#: ../views/pelikula_container_view.pt:33
+msgid "Datorren asteburuko pelikulak ez daude oraindik eskuragarri"
+msgstr ""
+
+#: ../content/pelikula.py:27
+msgid "Eguna"
+msgstr ""
+
+#: ../views/pelikula_container_view.pt:53
+msgid "Emankizun egunak"
+msgstr ""
+
+#: ../views/pelikula_container_view.pt:11
+msgid "Erabili elementu hau pelikulekin hitzordu bat sortzeko. Aukeratu nahi dituzun pelikulak eta sistemak automatikoki pelikula guzti horien informazioa biltzen duen hitzordu bat sortuko du. Hitzorduaren hasiera aukeratutako pelikuletako lehen saioaren eguna izango da eta bukaera azken saioaren eguna. Hitzordua euskaraz eta gaztelaniaz sortuko da baina pribatuan, zuk gainbegiratu, nahi duzuna aldatu eta ondoren argitaratzeko."
+msgstr ""
+
+#: ../views/pelikula_container_view.py:102
+msgid "Ezin izan da hitzordua sortu"
+msgstr ""
+
+#: ../content/pelikula.py:36
+msgid "Ficha tecnica"
+msgstr ""
+
+#: ../content/pelikula.py:37
+msgid "Ficha tecnica de la pelicula en catellano"
+msgstr ""
+
+#: ../content/pelikula.py:42
+msgid "Fitxa teknikoa"
+msgstr ""
+
+#: ../views/pelikula_container_view.py:106
+msgid "Hitzordua ondo sortu "
+msgstr ""
+
+#: ../content/pelikula_container.py:16
+msgid "Hitzorduaren hasierako testua"
+msgstr ""
+
+#: ../configure.zcml:27
+msgid "Installs the udala.zinema add-on."
+msgstr ""
+
+#: ../content/pelikula.py:49
+msgid "Itsatsi hemen pelikularen trailerraren embed kodea"
+msgstr ""
+
+#: ../views/pelikula_container_view.pt:52
+msgid "Izenburua"
+msgstr ""
+
+#: ../content/pelikula_container.py:63
+msgid "Lekua euskaraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:65
+msgid "Lekua gazteleraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:81
+msgid "Oharra"
+msgstr ""
+
+#: ../content/pelikula_container.py:68
+msgid "Oharra erakutsi?"
+msgstr ""
+
+#: ../content/pelikula.py:28
+msgid "Ordua"
+msgstr ""
+
+#: ../profiles/default/types/Pelikula.xml
+msgid "Pelikula"
+msgstr ""
+
+#: ../profiles/default/types/PelikulaContainer.xml
+msgid "PelikulaContainer"
+msgstr ""
+
+#: ../content/pelikula.py:43
+msgid "Pelikularen fitxa teknikoa euskaraz"
+msgstr ""
+
+#: ../content/pelikula.py:48
+msgid "Pelikularen trailerra"
+msgstr ""
+
+#: ../content/pelikula_container.py:23
+msgid "Programazioaren informazioa"
+msgstr ""
+
+#: ../content/pelikula.py:60
+msgid "Saioak"
+msgstr ""
+
+#: ../views/pelikula_container_view.pt:87
+msgid "Sortu agendako hitzorduak"
+msgstr ""
+
+#: ../content/pelikula_container.py:34
+msgid "Sortuko den hitzorduaren etiketak euskaraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:49
+msgid "Sortuko den hitzorduaren etiketak gazteleraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:25
+msgid "Sortuko duen hitzorduaren titulua euskaraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:27
+msgid "Sortuko duen hitzorduaren titulua gazteleraz"
+msgstr ""
+
+#: ../content/pelikula_container.py:17
+msgid "Testu orokor hau ebentuaren aurretik agertuko da eta bere helburua webgunearen maketazio txukun bat edukitzea da. Informazio orokorra dago bertan, hala nola, txartel salmentaren ordutegia eta informazio gehiago lortzeko telefonoa."
+msgstr ""
+
+#: ../configure.zcml:36
+msgid "Uninstalls the udala.zinema add-on."
+msgstr ""
+
+#: ../configure.zcml:27
+msgid "udala.zinema"
+msgstr ""
+
+#: ../configure.zcml:36
+msgid "udala.zinema (uninstall)"
+msgstr ""

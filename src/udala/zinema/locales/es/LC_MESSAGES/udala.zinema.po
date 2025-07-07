@@ -1,0 +1,155 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-07-07 13:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ../content/pelikula_container.py:71
+msgid "Aktibatuta badago, beheko oharra erakutsiko da zinema karteldegiaren atalean."
+msgstr "Si está activado, se mostrará el mensaje de debajo en el apartado de cartelera."
+
+#: ../content/pelikula.py:29
+msgid "Aretoa"
+msgstr "Sala"
+
+#: ../views/pelikula_container_view.pt:33
+msgid "Datorren asteburuko pelikulak ez daude oraindik eskuragarri"
+msgstr "Las películas del próximo fin de semana no están disponibles todavía"
+
+#: ../content/pelikula.py:27
+msgid "Eguna"
+msgstr "Día"
+
+#: ../views/pelikula_container_view.pt:53
+msgid "Emankizun egunak"
+msgstr "Día de las emisiones"
+
+#: ../views/pelikula_container_view.pt:11
+msgid "Erabili elementu hau pelikulekin hitzordu bat sortzeko. Aukeratu nahi dituzun pelikulak eta sistemak automatikoki pelikula guzti horien informazioa biltzen duen hitzordu bat sortuko du. Hitzorduaren hasiera aukeratutako pelikuletako lehen saioaren eguna izango da eta bukaera azken saioaren eguna. Hitzordua euskaraz eta gaztelaniaz sortuko da baina pribatuan, zuk gainbegiratu, nahi duzuna aldatu eta ondoren argitaratzeko."
+msgstr "Utilice este elemento para crear un evento con las películas. Seleccione las películas que desee y el sistema creará un evento con toda la información de las mismas. El día de inicio del evento será el de la primera sesión y el último día el de la última. El evento se creará automáticamente en euskara y castellano pero en privado, para que lo pueda revisar y publicar."
+
+#: ../views/pelikula_container_view.py:102
+msgid "Ezin izan da hitzordua sortu"
+msgstr "No se ha podido crear el evento"
+
+#: ../content/pelikula.py:36
+msgid "Ficha tecnica"
+msgstr "Ficha técnica"
+
+#: ../content/pelikula.py:37
+msgid "Ficha tecnica de la pelicula en catellano"
+msgstr "Ficha técnica de la película en castellano"
+
+#: ../content/pelikula.py:42
+msgid "Fitxa teknikoa"
+msgstr "Fitxa teknikoa"
+
+#: ../views/pelikula_container_view.py:106
+msgid "Hitzordua ondo sortu "
+msgstr "El evento se ha creado correctamente"
+
+#: ../content/pelikula_container.py:16
+msgid "Hitzorduaren hasierako testua"
+msgstr "Texto de inicio del evento"
+
+#: ../configure.zcml:27
+msgid "Installs the udala.zinema add-on."
+msgstr "Instalar udala.zinema"
+
+#: ../content/pelikula.py:49
+msgid "Itsatsi hemen pelikularen trailerraren embed kodea"
+msgstr "Pegue aquí el código embed del trailer de la película"
+
+#: ../views/pelikula_container_view.pt:52
+msgid "Izenburua"
+msgstr "Título"
+
+#: ../content/pelikula_container.py:63
+msgid "Lekua euskaraz"
+msgstr "Lugar en euskara"
+
+#: ../content/pelikula_container.py:65
+msgid "Lekua gazteleraz"
+msgstr "Lugar en castellano"
+
+#: ../content/pelikula_container.py:81
+msgid "Oharra"
+msgstr "Aviso"
+
+#: ../content/pelikula_container.py:68
+msgid "Oharra erakutsi?"
+msgstr "¿Mostrar aviso?"
+
+#: ../content/pelikula.py:28
+msgid "Ordua"
+msgstr "Hora"
+
+#: ../profiles/default/types/Pelikula.xml
+msgid "Pelikula"
+msgstr "Película"
+
+#: ../profiles/default/types/PelikulaContainer.xml
+msgid "PelikulaContainer"
+msgstr "Contenedor de películas"
+
+#: ../content/pelikula.py:43
+msgid "Pelikularen fitxa teknikoa euskaraz"
+msgstr "Ficha técnica de la película en euskara"
+
+#: ../content/pelikula.py:48
+msgid "Pelikularen trailerra"
+msgstr "Trailer de la película"
+
+#: ../content/pelikula_container.py:23
+msgid "Programazioaren informazioa"
+msgstr "Información de la programación"
+
+#: ../content/pelikula.py:60
+msgid "Saioak"
+msgstr "Sesiones"
+
+#: ../views/pelikula_container_view.pt:87
+msgid "Sortu agendako hitzorduak"
+msgstr "Crear eventos de agenda"
+
+#: ../content/pelikula_container.py:34
+msgid "Sortuko den hitzorduaren etiketak euskaraz"
+msgstr "Etiquetas del evento en euskara"
+
+#: ../content/pelikula_container.py:49
+msgid "Sortuko den hitzorduaren etiketak gazteleraz"
+msgstr "Etiquetas del evento en español"
+
+#: ../content/pelikula_container.py:25
+msgid "Sortuko duen hitzorduaren titulua euskaraz"
+msgstr "Título del evento en euskara"
+
+#: ../content/pelikula_container.py:27
+msgid "Sortuko duen hitzorduaren titulua gazteleraz"
+msgstr "Título del evento en español"
+
+#: ../content/pelikula_container.py:17
+msgid "Testu orokor hau ebentuaren aurretik agertuko da eta bere helburua webgunearen maketazio txukun bat edukitzea da. Informazio orokorra dago bertan, hala nola, txartel salmentaren ordutegia eta informazio gehiago lortzeko telefonoa."
+msgstr "Este texto general se mostrará antes del texto del evento y su objetivo es que el evento tenga un formato adecuado. Aquí se debería introducir información general, tal como el horario de taquilla o compra de entradas, o el teléfono para obtener más información."
+
+#: ../configure.zcml:36
+msgid "Uninstalls the udala.zinema add-on."
+msgstr "Desinstalar udala.zinema"
+
+#: ../configure.zcml:27
+msgid "udala.zinema"
+msgstr "udala.zinema"
+
+#: ../configure.zcml:36
+msgid "udala.zinema (uninstall)"
+msgstr "udala.zienma (uninstall)"
