@@ -36,14 +36,16 @@ class PelikulaContainerView(BrowserView):
         return not pps.anonymous()
 
     def get_latest_films(self, num=10):
-        return self.context.getFolderContents(
-            {
-                "portal_type": "Pelikula",
-                "sort_on": "created",
-                "sort_order": "reverse",
-            },
-            full_objects=True,
-        )[:num]
+        brains = api.content.find(
+            context=self.context,
+            portal_type="Pelikula",
+            sort_on="created",
+            sort_order="reverse",
+            sort_limit=num,
+            depth=1
+        )
+        return [brain.getObject() for brain in brains][:num]
+
 
     def _films_in_current_week(self, items):
         sorted_data = []
