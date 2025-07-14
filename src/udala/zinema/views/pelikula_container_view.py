@@ -58,7 +58,7 @@ class PelikulaContainerView(BrowserView):
         min_date_dt = DateTime(min_date, fmt="international")
         max_date_dt = DateTime(max_date, fmt="international")
 
-        today = DateTime()
+        today = DateTime().earliestTime()
 
         if max_date_dt < today:
             # Erakusten den azken pelikula iraganekoa da
