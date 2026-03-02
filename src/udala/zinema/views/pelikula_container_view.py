@@ -42,10 +42,9 @@ class PelikulaContainerView(BrowserView):
             sort_on="created",
             sort_order="reverse",
             sort_limit=num,
-            depth=1
+            depth=1,
         )
         return [brain.getObject() for brain in brains][:num]
-
 
     def _films_in_current_week(self, items):
         sorted_data = []
@@ -68,7 +67,9 @@ class PelikulaContainerView(BrowserView):
         return True
 
     def films_are_from_current_week(self):
-        pelikula_relations = api.relation.get(source=self.context, relationship=REFERENCED_FILM)
+        pelikula_relations = api.relation.get(
+            source=self.context, relationship=REFERENCED_FILM
+        )
         pelikulak = [pelikula.to_object for pelikula in pelikula_relations]
         return self._films_in_current_week(pelikulak)
 
@@ -169,6 +170,7 @@ class CreatePelikulaEvents(BrowserView):
         )
         IEventAccessor(event).start = start_date
         IEventAccessor(event).end = end_date
+        IEventAccessor(event).whole_day = True
 
         alsoProvides(event, IPelikulaEvent)
         # Set the content of the container and add reference
