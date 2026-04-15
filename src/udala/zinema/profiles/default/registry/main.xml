@@ -1,8 +1,15 @@
-<?xml version="1.0"?>
-<registry
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="udala.zinema">
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="udala.zinema"
+>
 
-<!-- -*- extra stuff goes here -*- -->
-
+  <!-- -*- extra stuff goes here -*- -->
+  <record field="displayed_types"
+          interface="plone.base.interfaces.controlpanel.INavigationSchema"
+          name="plone.displayed_types"
+  >
+    <value purge="false">
+      <element>PelikulaContainer</element>
+    </value>
+  </record>
 </registry>
