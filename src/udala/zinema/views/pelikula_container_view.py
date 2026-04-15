@@ -19,6 +19,12 @@ from zope.component import getMultiAdapter
 from zope.interface import Interface, alsoProvides, implementer
 from plone.event.interfaces import IEventAccessor
 from plone.namedfile.file import NamedBlobImage
+from plone.base.utils import get_installer
+
+
+def is_pam_enabled(context):
+    installer = get_installer(context)
+    return installer.is_product_installed("plone.app.multilingual")
 
 
 class IPelikulaContainerView(Interface):
@@ -159,8 +165,7 @@ class CreatePelikulaEvents(BrowserView):
             type="Event",
             title=title,
             text=RichTextValue(
-                safe_text(self.get_initial_stuff(language).output)
-                + safe_text(html_content)
+                safe_text(self.get_initial_stuff(language)) + safe_text(html_content)
             ),
             # start=start_date,
             # end=end_date,
@@ -191,22 +196,22 @@ class CreatePelikulaEvents(BrowserView):
                 source=context, target=item, relationship=REFERENCED_FILM
             )
 
-        translated, trans_items = self.create_translated_event(event, items)
-        # translated_context = context.getTranslation(MEZUAK["translation"][language])
-        translation_manager = pamapi.get_translation_manager(context)
-        translated_context = translation_manager.get_translation(
-            MEZUAK["translation"][language]
-        )
-        # Set the content and references to translated content
-        translated_context.text = translated.text
-
-        # translated_context.deleteReferences(REFERENCED_FILM)
-        api.relation.delete(source=translated_context, relationship=REFERENCED_FILM)
-        for item in trans_items:
-            # translated_context.addReference(item, REFERENCED_FILM)
-            api.relation.create(
-                source=translated_context, target=item, relationship=REFERENCED_FILM
+        if is_pam_enabled(self.context):
+            translated, trans_items = self.create_translated_event(event, items)
+            translation_manager = pamapi.get_translation_manager(context)
+            translated_context = translation_manager.get_translation(
+                MEZUAK["translation"][language]
             )
+            # Set the content and references to translated content
+            translated_context.text = translated.text
+
+            # translated_context.deleteReferences(REFERENCED_FILM)
+            api.relation.delete(source=translated_context, relationship=REFERENCED_FILM)
+            for item in trans_items:
+                # translated_context.addReference(item, REFERENCED_FILM)
+                api.relation.create(
+                    source=translated_context, target=item, relationship=REFERENCED_FILM
+                )
 
         return event
 
@@ -259,7 +264,7 @@ class CreatePelikulaEvents(BrowserView):
             api.content.rename(obj=trans_event, new_id=id)
             trans_event.title = title
             trans_event.text = RichTextValue(
-                self.get_initial_stuff(target_language).output + html_content
+                self.get_initial_stuff(target_language) + html_content
             )
             trans_event.location = MEZUAK["location"][target_language]
             trans_event.subjects = MEZUAK["subject"][target_language]
@@ -318,7 +323,7 @@ class CreatePelikulaEvents(BrowserView):
             html += self.get_content_for_pelikula(item, num)
             num = num + 1
 
-        return images + "<br /> <br />" + html
+        return f'<div class="d-flex justify-content-center">{images}</div><br /> <br />{html}'
 
     def get_top_image(self, item, num=0):
         self.request.set("num", num)
@@ -339,6 +344,10 @@ class CreatePelikulaEvents(BrowserView):
         return view()
 
     def get_initial_stuff(self, language):
-        manager = pamapi.get_translation_manager(self.context)
-        item = manager.get_translation(language)
-        return item.initial_stuff
+        if is_pam_enabled(self.context):
+            manager = pamapi.get_translation_manager(self.context)
+            item = manager.get_translation(language)
+        else:
+            item = self.context
+
+        return item and item.initial_stuff and item.initial_stuff.output or ""
