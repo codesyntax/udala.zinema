@@ -25,8 +25,8 @@ classifiers = [
 dependencies = [
     "Products.CMFPlone",
     "plone.api",
-    
     "plone.restapi",
+    "collective.z3cform.datagridfield",
 ]
 
 [project.optional-dependencies]
