@@ -23,6 +23,8 @@ class UdalaZinemaLayer(PloneSandboxLayer):
 
         self.loadZCML(package=plone.restapi)
 
+        import plone.app.z3cform
+        self.loadZCML(package=plone.app.z3cform)
         import collective.z3cform.datagridfield
 
         self.loadZCML(package=collective.z3cform.datagridfield)
