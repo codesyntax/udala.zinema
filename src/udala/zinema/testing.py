@@ -22,10 +22,10 @@ class UdalaZinemaLayer(PloneSandboxLayer):
         import plone.restapi
 
         self.loadZCML(package=plone.restapi)
-        
+
         import collective.z3cform.datagridfield
         self.loadZCML(package=collective.z3cform.datagridfield)
-        
+
         self.loadZCML(package=udala.zinema)
 
     def setUpPloneSite(self, portal):
