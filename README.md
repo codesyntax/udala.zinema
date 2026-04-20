@@ -22,7 +22,7 @@ A Plone addon providing specific functionality for UdalPlone projects.
 
 ## Features
 
-- Custom content types and views specific to udala.zinema
+- Provides `Pelikula` and `PelikulaContainer` content types for cinema schedules
 - RestAPI endpoints
 - Volto-ready backend setup
 
