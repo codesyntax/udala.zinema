@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
@@ -11,7 +10,6 @@ import udala.zinema
 
 
 class UdalaZinemaLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -19,13 +17,15 @@ class UdalaZinemaLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.app.dexterity
+
         self.loadZCML(package=plone.app.dexterity)
         import plone.restapi
+
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=udala.zinema)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'udala.zinema:default')
+        applyProfile(portal, "udala.zinema:default")
 
 
 UDALA_ZINEMA_FIXTURE = UdalaZinemaLayer()
@@ -33,13 +33,13 @@ UDALA_ZINEMA_FIXTURE = UdalaZinemaLayer()
 
 UDALA_ZINEMA_INTEGRATION_TESTING = IntegrationTesting(
     bases=(UDALA_ZINEMA_FIXTURE,),
-    name='UdalaZinemaLayer:IntegrationTesting',
+    name="UdalaZinemaLayer:IntegrationTesting",
 )
 
 
 UDALA_ZINEMA_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(UDALA_ZINEMA_FIXTURE,),
-    name='UdalaZinemaLayer:FunctionalTesting',
+    name="UdalaZinemaLayer:FunctionalTesting",
 )
 
 
@@ -49,5 +49,5 @@ UDALA_ZINEMA_ACCEPTANCE_TESTING = FunctionalTesting(
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='UdalaZinemaLayer:AcceptanceTesting',
+    name="UdalaZinemaLayer:AcceptanceTesting",
 )

@@ -1,9 +1,11 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="udala.zinema">
+      xml:lang="en"
+      i18n:domain="udala.zinema"
+>
   <head></head>
   <body>
     <metal:content fill-slot="content-core">

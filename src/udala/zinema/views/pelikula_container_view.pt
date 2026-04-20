@@ -1,14 +1,20 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="udala.zinema">
+      xml:lang="en"
+      i18n:domain="udala.zinema"
+>
   <head></head>
   <body>
 
-    <metal:desc fill-slot="content-description" tal:condition="view/editing_permission">
-      <p class="documentDescription" i18n:translate="">
+    <metal:desc fill-slot="content-description"
+                tal:condition="view/editing_permission"
+    >
+      <p class="documentDescription"
+         i18n:translate=""
+      >
         Erabili elementu hau pelikulekin hitzordu bat sortzeko. Aukeratu nahi dituzun pelikulak
         eta sistemak automatikoki pelikula guzti horien informazioa biltzen duen hitzordu bat
         sortuko du. Hitzorduaren hasiera aukeratutako pelikuletako lehen saioaren eguna izango da
@@ -23,11 +29,11 @@
       <tal:content condition="not:view/editing_permission">
 
         <tal:warning condition="context/show_warning|nothing">
-          <p tal:content="structure context/warning/output" />
+          <p tal:content="structure context/warning/output"></p>
         </tal:warning>
         <tal:notwarning condition="not:context/show_warning|nothing">
           <tal:current condition="view/films_are_from_current_week">
-            <div tal:replace="structure context/text/output" />
+            <div tal:replace="structure context/text/output"></div>
           </tal:current>
           <tal:not-current condition="not: view/films_are_from_current_week">
             <p i18n:translate="">Datorren asteburuko pelikulak ez daude oraindik eskuragarri</p>
@@ -41,10 +47,13 @@
 
 
       <tal:form condition="view/editing_permission">
-        <form
-            action="" method="post"
-            tal:attributes="action string:${context/absolute_url}/create_pelikula_events">
-          <span tal:replace="structure context/@@authenticator/authenticator" />
+        <form action=""
+              method="post"
+              tal:attributes="
+                action string:${context/absolute_url}/create_pelikula_events;
+              "
+        >
+          <span tal:replace="structure context/@@authenticator/authenticator"></span>
           <table class="listing">
             <thead>
               <tr>
@@ -56,13 +65,21 @@
             <tbody>
               <tr tal:repeat="pelikula view/get_latest_films">
                 <td>
-                  <input type="checkbox" name="ids:list" tal:attributes="value pelikula/id" />
+                  <input name="ids:list"
+                         type="checkbox"
+                         tal:attributes="
+                           value pelikula/id;
+                         "
+                  />
                 </td>
                 <td>
                   <a href=""
-                     tal:attributes="href pelikula/absolute_url;
-                                     id string:pelikula-link-${repeat/pelikula/index}"
-                     tal:content="pelikula/Title">
+                     tal:content="pelikula/Title"
+                     tal:attributes="
+                       href pelikula/absolute_url;
+                       id string:pelikula-link-${repeat/pelikula/index};
+                     "
+                  >
                     Izena
                   </a>
                   <script type="text/javascript"
@@ -72,19 +89,25 @@
                                                   subtype: 'ajax',
                                                   filter: '#content-core',
                                                   })
-                                                                       });">
+                                                                       });"
+                  >
                     Script
                   </script>
                 </td>
-                <td tal:define="egunak pelikula/saioak">
+                <td tal:define="
+                      egunak pelikula/saioak;
+                    ">
                   <tal:saio repeat="saioa egunak">
-                    <span tal:replace="saioa/eguna" />
+                    <span tal:replace="saioa/eguna"></span>
                   </tal:saio>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button type="submit" class="btn btn-primary" i18n:translate="">Sortu agendako hitzorduak</button>
+          <button class="btn btn-primary"
+                  type="submit"
+                  i18n:translate=""
+          >Sortu agendako hitzorduak</button>
         </form>
       </tal:form>
     </metal:content-core>

@@ -1,21 +1,22 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="plone">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone"
+    >
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
+    <!-- -*- extra stuff goes here -*- -->
 
     <permission
         id="udala.zinema.AddPelikula"
         title="udala.zinema: Add Pelikula"
-    />
+        />
 
 
     <permission
         id="udala.zinema.AddPelikulaContainer"
         title="udala.zinema: Add PelikulaContainer"
-    />
+        />
 
 
 

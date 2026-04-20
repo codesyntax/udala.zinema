@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from zope import schema
-from zope.interface import alsoProvides, implementer
-
 from udala.zinema import _
+from zope import schema
+from zope.interface import alsoProvides
+from zope.interface import implementer
 
 
 class IPelikulaContainer(model.Schema):
@@ -15,7 +14,10 @@ class IPelikulaContainer(model.Schema):
     initial_stuff = RichText(
         title=_("Hitzorduaren hasierako testua"),
         description=_(
-            "Testu orokor hau ebentuaren aurretik agertuko da eta bere helburua webgunearen maketazio txukun bat edukitzea da. Informazio orokorra dago bertan, hala nola, txartel salmentaren ordutegia eta informazio gehiago lortzeko telefonoa."
+            "Karpeta honen helburua atari nagusiko asteburuko zinema karteldegiaren "
+            "erakusgunearen maketazio txukun bat edukitzea da. Informazio orokorra "
+            "dago bertan, hala nola, txartel salmentaren ordutegia eta informazio "
+            "gehiago lortzeko telefonoa."
         ),
         required=False,
     )
@@ -66,10 +68,11 @@ class IPelikulaContainer(model.Schema):
 
     show_warning = schema.Bool(
         title=_(
-            'Oharra erakutsi?',
+            "Oharra erakutsi?",
         ),
         description=_(
-            'Aktibatuta badago, beheko oharra erakutsiko da zinema karteldegiaren atalean.'
+            "Aktibatuta badago, beheko oharra "
+            "erakutsiko da zinema karteldegiaren atalean."
         ),
         required=False,
         default=False,
@@ -79,13 +82,14 @@ class IPelikulaContainer(model.Schema):
     # Make sure to import: from plone.app.textfield import RichText
     warning = RichText(
         title=_(
-            'Oharra',
+            "Oharra",
         ),
         description="",
-        default='',
+        default="",
         required=False,
         readonly=False,
     )
+
 
 alsoProvides(IPelikulaContainer["show_warning"], ILanguageIndependentField)
 

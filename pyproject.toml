@@ -2,9 +2,9 @@
 name = "udala.zinema"
 dynamic = ["version"]
 description = "A new addon for Plone"
-readme = "README.md"
-license = "GPL-2.0-only"
-requires-python = ">=3.10"
+readme = "README.rst"
+license = "GPL-2.0-or-later"
+requires-python = ">=3.10, <3.14"
 authors = [
     { name = "CodeSyntax", email = "plone@codesyntax.com" },
 ]
@@ -165,6 +165,8 @@ preview = true
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["E501", "RUF001", "S101"]
+"src/udala/zinema/locales/update.py" = ["S603"]
+"src/udala/zinema/views/pelikula_container_view.py" = ["A001"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
