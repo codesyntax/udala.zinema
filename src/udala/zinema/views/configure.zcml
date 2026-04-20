@@ -2,49 +2,50 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="udala.zinema">
+    i18n_domain="udala.zinema"
+    >
 
- <!-- -*- extra stuff goes here -*- -->
-
-  <browser:page
-    name="view"
-    for="..content.pelikula_container.IPelikulaContainer"
-    class=".pelikula_container_view.PelikulaContainerView"
-    template="pelikula_container_view.pt"
-    permission="zope2.View"
-    layer="udala.zinema.interfaces.IUdalaZinemaLayer"
-    />
+  <!-- -*- extra stuff goes here -*- -->
 
   <browser:page
-    for="..content.pelikula_container.IPelikulaContainer"
-    name="create_pelikula_events"
-    class=".pelikula_container_view.CreatePelikulaEvents"
-    permission="cmf.ModifyPortalContent"
-    layer="udala.zinema.interfaces.IUdalaZinemaLayer"
-  />
-
-<browser:page
-    for="..content.pelikula.IPelikula"
-    name="view"
-    class=".pelikula.PelikulaView"
-    template="pelikulaview.pt"
-    permission="zope2.View"
-  />
+      name="view"
+      for="..content.pelikula_container.IPelikulaContainer"
+      class=".pelikula_container_view.PelikulaContainerView"
+      template="pelikula_container_view.pt"
+      permission="zope2.View"
+      layer="udala.zinema.interfaces.IUdalaZinemaLayer"
+      />
 
   <browser:page
-    for="..content.pelikula.IPelikula"
-    name="pelikula-image-for-event"
-    class=".pelikula.PelikulaImageForEvent"
-    template="pelikulaimageforevent.pt"
-    permission="zope2.View"
-  />
+      name="create_pelikula_events"
+      for="..content.pelikula_container.IPelikulaContainer"
+      class=".pelikula_container_view.CreatePelikulaEvents"
+      permission="cmf.ModifyPortalContent"
+      layer="udala.zinema.interfaces.IUdalaZinemaLayer"
+      />
 
   <browser:page
-    for="..content.pelikula.IPelikula"
-    name="pelikula-for-event"
-    class=".pelikula.PelikulaForEvent"
-    template="pelikulaforevent.pt"
-    permission="zope2.View"
-  />
+      name="view"
+      for="..content.pelikula.IPelikula"
+      class=".pelikula.PelikulaView"
+      template="pelikulaview.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="pelikula-image-for-event"
+      for="..content.pelikula.IPelikula"
+      class=".pelikula.PelikulaImageForEvent"
+      template="pelikulaimageforevent.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="pelikula-for-event"
+      for="..content.pelikula.IPelikula"
+      class=".pelikula.PelikulaForEvent"
+      template="pelikulaforevent.pt"
+      permission="zope2.View"
+      />
 
 </configure>

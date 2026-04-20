@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.registry import DictRow
+from DateTime import DateTime
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform.directives import widget
+from plone.base.i18nl10n import weekdayname_msgid
 
 # from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -14,13 +16,10 @@ from udala.zinema import _
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
+from zope.i18n import translate
+from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.interface import Interface
-from DateTime import DateTime
-from plone.base.i18nl10n import weekdayname_msgid
-from zope.i18n import translate
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from zope.interface import alsoProvides
 
 
 class ISaioaRowSchema(Interface):
@@ -51,7 +50,10 @@ class IPelikula(model.Schema):
 
     alt_text = schema.TextLine(
         title="Image alt text",
-        description="Enter the alternative text for the image that will be read to invident users",
+        description=(
+            "Enter the alternative text for the image "
+            "that will be read to invident users"
+        ),
         required=False,
     )
 

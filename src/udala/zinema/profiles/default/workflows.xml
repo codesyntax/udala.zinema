@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="portal_workflow" meta_type="Plone Workflow Tool">
-  <type type_id="Pelikula"/>
+<object meta_type="Plone Workflow Tool"
+        name="portal_workflow"
+>
+  <type type_id="Pelikula" />
 </object>

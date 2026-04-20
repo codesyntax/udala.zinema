@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="udala.zinema"
-      interface="udala.zinema.interfaces.IUdalaZinemaLayer"
-      />
+  <layer interface="udala.zinema.interfaces.IUdalaZinemaLayer"
+         name="udala.zinema"
+  />
 </layers>

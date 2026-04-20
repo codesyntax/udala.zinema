@@ -1,25 +1,23 @@
-# -*- coding: utf-8 -*-
-
-from logging import getLogger
-
-from Acquisition import aq_inner, aq_parent
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from DateTime import DateTime
+from logging import getLogger
 from plone import api
 from plone.app.multilingual import api as pamapi
 from plone.app.textfield import RichTextValue
+from plone.base.utils import get_installer
 from plone.base.utils import safe_text
+from plone.event.interfaces import IEventAccessor
+from plone.namedfile.file import NamedBlobImage
 from Products.Five.browser import BrowserView
-from Products.statusmessages.interfaces import IStatusMessage
 from udala.zinema import _
 from udala.zinema.config import REFERENCED_FILM
-from udala.zinema.content.pelikula_container import IPelikulaContainer
 from udala.zinema.interfaces import IPelikulaEvent
 from zExceptions import Forbidden
 from zope.component import getMultiAdapter
-from zope.interface import Interface, alsoProvides, implementer
-from plone.event.interfaces import IEventAccessor
-from plone.namedfile.file import NamedBlobImage
-from plone.base.utils import get_installer
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 def is_pam_enabled(context):
@@ -60,17 +58,12 @@ class PelikulaContainerView(BrowserView):
 
         min_date = min(sorted_data)
         max_date = max(sorted_data)
-        min_date_dt = DateTime(min_date, fmt="international")
+        DateTime(min_date, fmt="international")
         max_date_dt = DateTime(max_date, fmt="international")
 
         today = DateTime().earliestTime()
 
-        if max_date_dt < today:
-            # Erakusten den azken pelikula iraganekoa da
-            return False
-
-        # Beste kasu guztietan pelikulak erakutsi.
-        return True
+        return not (max_date_dt < today)
 
     def films_are_from_current_week(self):
         pelikula_relations = api.relation.get(
@@ -81,7 +74,6 @@ class PelikulaContainerView(BrowserView):
 
 
 class CreatePelikulaEvents(BrowserView):
-
     def __call__(self):
 
         log = getLogger(__name__)
@@ -153,11 +145,15 @@ class CreatePelikulaEvents(BrowserView):
         html_content = self.get_html_content(items)
         parent = aq_parent(aq_parent(context)).get("agenda", aq_parent(context))
         if language == "es":
-            id = "cartelera-cine-fin-de-semana-%s" % start_date.strftime("%d-%m-%Y")
+            id = "cartelera-cine-fin-de-semana-{}".format(
+                start_date.strftime("%d-%m-%Y")
+            )
         else:
-            id = "%s-asteburuko-zinema-karteldegia" % start_date.strftime("%Y-%m-%d")
+            id = "{}-asteburuko-zinema-karteldegia".format(
+                start_date.strftime("%Y-%m-%d")
+            )
 
-        while id in parent.keys():
+        while id in parent:
             id = id + "-1"
 
         event = api.content.create(
@@ -231,7 +227,7 @@ class CreatePelikulaEvents(BrowserView):
                 translation.image = NamedBlobImage(item.image.data, item.image.filename)
 
                 trans_items.append(translation)
-            except Exception as e:
+            except Exception:
                 from logging import getLogger
 
                 log = getLogger(__name__)
@@ -247,15 +243,17 @@ class CreatePelikulaEvents(BrowserView):
         manager = pamapi.get_translation_manager(event)
         try:
             if target_language == "es":
-                id = "cartelera-cine-fin-de-semana-%s" % event.start.strftime(
-                    "%d-%m-%Y"
+                id = "cartelera-cine-fin-de-semana-{}".format(
+                    event.start.strftime("%d-%m-%Y")
                 )
             else:
-                id = "%s-asteburuko-zinema-karteldegia" % event.end.strftime("%Y-%m-%d")
+                id = "{}-asteburuko-zinema-karteldegia".format(
+                    event.end.strftime("%Y-%m-%d")
+                )
 
             parent_manager = pamapi.get_translation_manager(aq_parent(event))
 
-            while id in parent_manager.get_translation(target_language).keys():
+            while id in parent_manager.get_translation(target_language):
                 id = id + "-1"
 
             manager.add_translation(target_language)
@@ -318,12 +316,14 @@ class CreatePelikulaEvents(BrowserView):
         html = ""
         num = 0
         for item in items:
-
             images += self.get_top_image(item, num)
             html += self.get_content_for_pelikula(item, num)
             num = num + 1
 
-        return f'<div class="d-flex justify-content-center">{images}</div><br /> <br />{html}'
+        return (
+            f'<div class="d-flex justify-content-center">{images}</div>'
+            f"<br /> <br />{html}"
+        )
 
     def get_top_image(self, item, num=0):
         self.request.set("num", num)
@@ -350,4 +350,4 @@ class CreatePelikulaEvents(BrowserView):
         else:
             item = self.context
 
-        return item and item.initial_stuff and item.initial_stuff.output or ""
+        return (item and item.initial_stuff and item.initial_stuff.output) or ""

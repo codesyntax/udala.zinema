@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from plone.base.i18nl10n import weekdayname_msgid
 from Products.Five.browser import BrowserView
@@ -6,7 +5,6 @@ from zope.i18n import translate
 
 
 class PelikulaView(BrowserView):
-
     def saioak(self):
         return sorted(
             self.context.saioak,
@@ -32,7 +30,6 @@ class PelikulaImageForEvent(BrowserView):
 
 
 class PelikulaForEvent(BrowserView):
-
     def saioak(self):
 
         return sorted(
